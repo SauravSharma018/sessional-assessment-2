@@ -19,9 +19,9 @@
     
     <!-- Header -->
        <header id="header" class="shadow bg-light">
+        <img class="logo" src="assets/1.jpeg" >
            <nav class="container navbar">
                <a href="/index.html" class="nav-brand text-dark">
-                    BlogChain
                 </a>
 
                 <!-- toggle button -->
@@ -265,10 +265,13 @@
                     </div>
 
                     <div class="text-center">
-                        <button class="btn btn-primary secondary-title text-light">Load More Posts...</button>
+                        <button onclick="more()" class="btn btn-primary secondary-title text-light">Load More Posts...</button>
+
                     </div>
+
                 </div>
             </section>
+            <div id="parent"></div>
         <!-- .Blog Post Section -->
 
         <!-- Swiper slider -->
@@ -468,5 +471,30 @@
  
      <!-- custom javascript main.js file -->
      <script src="main.js"></script>
+     <script>
+        function more(){
+            var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function(){
+                    if(this.readyState==4 && this.status==200){
+                        console.log(this.responseText);  // this is the data we have to access
+                        var content = this.responseText;
+                        var data = this.responseText;  
+                        var dataobj = JSON.parse(data);   // we are accessing the data by converting it to JSON object
+                        var parent = document.getElementById("parent");
+                        for(var i=0;i<10;i++)
+                        {
+                            var node = document.createElement('h1');
+                            node.innerHTML = dataobj[i].id+". "+"title : " +dataobj[i].title + "<br>" +"Body : " + dataobj[i].body ;
+                            parent.appendChild(node);
+                        }
+                        
+
+                    }
+                }
+                xhr.open("GET","https://jsonplaceholder.typicode.com/posts?utm_source=Mailerlite&utm_medium=E-mail&utm_campaign=Test%20Series&utm_term=2022-08-11");
+                xhr.send();
+            }
+        
+     </script>
  </body>
  </html>

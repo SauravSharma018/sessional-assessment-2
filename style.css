@@ -181,7 +181,7 @@ a{
  
 /* ------- Navigation Menu ---------- */
 .navbar{
-    position: relative;
+    /* position: relative; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -195,6 +195,10 @@ a{
     align-self: center;
     font-size: 32px;
     color: var(--light);
+}
+.logo{
+    height: 100px;
+    margin-bottom: -80px;
 }
 
 .collapse{
